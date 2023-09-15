@@ -1,0 +1,9 @@
+<aside class="relative flex-shrink-0 bg-sidebar h-screen w-64 md:block shadow-xl hidden bg-blue-600">
+  <div class="px-6 py-3">
+    <a href="#" class="text-white text-2xl font-semibold hover:text-gray-300">Dashboard</a>
+  </div>
+  <nav class="text-white text-base font-semibold">
+    <%= link_to 'Home', root_path, class: class_names("flex items-center text-white py-4 pl-6", { 'bg-blue-900': current_page?(root_path) }) %>
+    <%= link_to 'Contact', contact_path, class: class_names("flex items-center text-white py-4 pl-6", { 'bg-blue-900': current_page?(contact_path) }) %>
+  </nav>
+</aside>

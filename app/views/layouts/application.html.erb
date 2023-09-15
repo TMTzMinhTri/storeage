@@ -8,9 +8,27 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <style>
+      .bg-sidebar { background: #3d68ff; }
+    </style>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="bg-gray-100">
+    <% if devise_controller? %>
+      <div class="min-h-screen w-full flex items-center">
+        <%= yield %>
+      </div>
+    <% else %>
+      <div class='flex h-screen w-screen overflow-hidden'>
+        <%= render 'layouts/shared/sidebar' %>
+        <div class="w-full flex flex-col h-screen overflow-y-hidden" >
+          <%= render 'layouts/shared/header' %>
+          <main class="w-full flex-grow p-6 h-full container">
+            <%= yield %>
+          </main>
+        </div>
+      </div>
+    <% end %>
+    <%= render partial: "layouts/shared/notifications", locals: { message: flash[:notice] } %>
   </body>
 </html>

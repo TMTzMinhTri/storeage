@@ -188,6 +188,11 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@popperjs/core@^2.9.3":
+  version "2.11.8"
+  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.8.tgz#6b79032e760a0899cd4204710beede972a3a185f"
+  integrity sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==
+
 "@rails/actioncable@^7.0":
   version "7.0.8"
   resolved "https://registry.yarnpkg.com/@rails/actioncable/-/actioncable-7.0.8.tgz#f44e7517f2d1570f1eabeea457dbeb17ed3a2d12"
@@ -371,6 +376,14 @@ fill-range@^7.0.1:
   dependencies:
     to-regex-range "^5.0.1"
 
+flowbite@^1.8.1:
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/flowbite/-/flowbite-1.8.1.tgz#a1f5fb039c4c275414a457089b4917a67e9153a5"
+  integrity sha512-lXTcO8a6dRTPFpINyOLcATCN/pK1Of/jY4PryklPllAiqH64tSDUsOdQpar3TO59ZXWwugm2e92oaqwH6X90Xg==
+  dependencies:
+    "@popperjs/core" "^2.9.3"
+    mini-svg-data-uri "^1.4.3"
+
 fraction.js@^4.2.0:
   version "4.3.6"
   resolved "https://registry.yarnpkg.com/fraction.js/-/fraction.js-4.3.6.tgz#e9e3acec6c9a28cf7bc36cbe35eea4ceb2c5c92d"
@@ -423,6 +436,11 @@ has@^1.0.3:
   integrity sha512-f2dvO0VU6Oej7RkWJGrehjbzMAjFp5/VKPp5tTpWIV4JHHZK1/BxbFRtf/siA2SWTe09caDmVtYYzWEIbBS4zw==
   dependencies:
     function-bind "^1.1.1"
+
+hotkeys-js@>=3:
+  version "3.12.0"
+  resolved "https://registry.yarnpkg.com/hotkeys-js/-/hotkeys-js-3.12.0.tgz#5534a7ffdba923df489ffbd876b991979beb2c77"
+  integrity sha512-Z+N573ycUKIGwFYS3ID1RzMJiGmtWMGKMiaNLyJS8B1ei+MllF4ZYmKS2T0kMWBktOz+WZLVNikftEgnukOrXg==
 
 inflight@^1.0.4:
   version "1.0.6"
@@ -495,6 +513,11 @@ micromatch@^4.0.4, micromatch@^4.0.5:
   dependencies:
     braces "^3.0.2"
     picomatch "^2.3.1"
+
+mini-svg-data-uri@^1.4.3:
+  version "1.4.4"
+  resolved "https://registry.yarnpkg.com/mini-svg-data-uri/-/mini-svg-data-uri-1.4.4.tgz#8ab0aabcdf8c29ad5693ca595af19dd2ead09939"
+  integrity sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==
 
 minimatch@^3.0.4:
   version "3.1.2"
@@ -676,6 +699,20 @@ source-map-js@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.0.2.tgz#adbc361d9c62df380125e7f161f71c826f1e490c"
   integrity sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==
+
+stimulus-notification@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/stimulus-notification/-/stimulus-notification-2.2.0.tgz#4e950ad90558617e4598d152b6fcd2635287a5bb"
+  integrity sha512-i1Z5IHDuMzwrRxnjqaftQcIseybouMiKfiC0aeFvoznXOo14gx7LWE5a8lssbQJQhbTcxq1RSVOKztkcmrKxng==
+  dependencies:
+    stimulus-use "^0.51.1"
+
+stimulus-use@^0.51.1:
+  version "0.51.3"
+  resolved "https://registry.yarnpkg.com/stimulus-use/-/stimulus-use-0.51.3.tgz#d7ac671aff8d0db253296dec89d38aa6f4b27e2a"
+  integrity sha512-V4YETxMFL4/bpmcqlwFtaOaJg9sLF+XlWsvXrsoWVA5jffsqe7uAvV6gGPPQta7Hgx01vovA0yNsWUe2eU9Jmw==
+  dependencies:
+    hotkeys-js ">=3"
 
 sucrase@^3.32.0:
   version "3.34.0"

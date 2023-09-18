@@ -33,7 +33,7 @@ Trestle.configure do |config|
   #
   # Set the path at which to mount the Trestle admin. Defaults to /admin.
   #
-  # config.path = "/admin"
+  config.path = '/'
 
   # Toggle whether Trestle should automatically mount the admin within your
   # Rails application's routes. Defaults to true.
@@ -97,7 +97,7 @@ Trestle.configure do |config|
   # Toggle whether Turbolinks is enabled within the admin.
   # Defaults to true if Turbolinks is available.
   #
-  # config.turbolinks = false
+  # config.turbolinks = true
 
   # Specify the parameters that should persist across requests when
   # paginating or reordering. Defaults to [:sort, :order, :scope].

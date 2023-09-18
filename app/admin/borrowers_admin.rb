@@ -16,23 +16,26 @@ Trestle.resource(:borrowers) do
     # column :district, link: false
     # column :ward, link: false
     column :note
-    column :created_at, align: :center
+    column :created_at, align: :center do |a|
+      a.created_at.localtime.to_fs(:short)
+    end
     actions
   end
 
   # Customize the form fields shown on the new/edit views.
   #
-  form dialog: true do |_borrower|
+  form dialog: true do |borrower|
+    p borrower
     text_field :name
     row do
       col { number_field :amount }
       col { text_field :note }
     end
 
-    # row do
-    # col { select :district_id, Location.district }
-    # col { select :ward_id, Location.wa }
-    # end
+    row do
+      col { collection_select :district_id, Location.district, :id, :name }
+      # col { select :ward_id, Location.ward(id: borrower.district_id) }
+    end
   end
 
   params do |params|

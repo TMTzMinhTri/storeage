@@ -6,6 +6,14 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-admin = User.new(email: 'admin@gmail.com', password: '123123123', password_confirmation: '123123123')
-admin.skip_confirmation!
-admin.save!
+# User.find_or_create_by(email: 'admin@gmail.com') do |user|
+#   user.password = '123123123'
+#   user.password_confirmation = '123123123'
+#   user.confirmed_at = Time.utc.now
+# end
+
+User.find_or_create_by(email: 'admin@gmail.com') do |user|
+  user.password = 'admin@123'
+  user.password_confirmation = 'admin@123'
+  user.confirmed_at = Time.current
+end

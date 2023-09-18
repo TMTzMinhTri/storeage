@@ -3,6 +3,7 @@ class PageController < ApplicationController
 
   def index
     @title = 'Home'
+    @pagy, @borrowers = pagy(Borrower.for_listing)
   end
 
   def contact

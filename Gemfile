@@ -81,3 +81,6 @@ gem 'pagy', '~> 6.0'
 gem 'paranoia', '~> 2.6'
 gem 'pg_search', '~> 2.3'
 gem 'sidekiq', '~> 7.1'
+
+gem 'trestle'
+gem 'trestle-auth'

@@ -19,6 +19,7 @@
 #  sign_in_count          :integer          default(0), not null
 #  unconfirmed_email      :string
 #  unlock_token           :string
+#  username               :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -30,6 +31,27 @@
 #  index_users_on_unlock_token          (unlock_token) UNIQUE
 #
 class User < ApplicationRecord
-  include Authenticate
-  devise :database_authenticatable, :recoverable, :validatable, :confirmable, :lockable, :trackable
+  # include Authenticate
+  attr_writer :login
+
+  devise :database_authenticatable, :recoverable, :validatable,
+         :confirmable, :lockable, :trackable, authentication_keys: [:login]
+
+  validates :username, presence: true, uniqueness: { case_sensitive: false }
+
+  def login
+    @login || username || email
+  end
+
+  class << self
+    def find_for_database_authentication(warden_conditions)
+      conditions = warden_conditions.dup
+      if (login = conditions.delete(:login))
+        where(conditions.to_h).where(['lower(username) = :value OR lower(email) = :value',
+                                      { value: login.downcase }]).first
+      elsif conditions.has_key?(:username) || conditions.has_key?(:email)
+        where(conditions.to_h).first
+      end
+    end
+  end
 end

@@ -1,0 +1,13 @@
+en:
+  activerecord:
+    models:
+      borrower:
+        one: "Borrower"
+        other: "Borrowers"
+
+vi:
+  activerecord:
+    models:
+      borrower:
+        one: "người mượn tiền"
+        other: "người mượn tiền"

@@ -10,6 +10,7 @@ Trestle.resource(:users, model: User, scope: Auth) do
       avatar_for(user)
     end
     column :email, link: true
+    column :username
     actions do |a|
       a.delete unless a.instance == current_user
     end
@@ -18,8 +19,7 @@ Trestle.resource(:users, model: User, scope: Auth) do
   form do |_user|
     tab :profile do
       text_field :email
-    end
-    tab :password_reset do
+      text_field :username
       password_field :password
       password_field :password_confirmation
     end

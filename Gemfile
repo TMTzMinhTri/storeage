@@ -84,3 +84,5 @@ gem 'sidekiq', '~> 7.1'
 
 gem 'trestle'
 gem 'trestle-auth'
+
+gem "trestle-search", "~> 0.4.3"

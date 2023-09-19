@@ -3,6 +3,10 @@ Trestle.resource(:borrowers) do
     item :borrowers, icon: 'fa fa-users', label: 'Người mượn'
   end
 
+  search do |query|
+    query ? collection.pg_search(query) : collection
+  end
+
   collection do
     model.for_listing
   end

@@ -94,9 +94,9 @@ Trestle.configure do |config|
   #   stylesheet_link_tag "custom"
   # end
 
-  config.hook(:javascripts) do
-    javascript_include_tag 'application', "data-turbolinks-track": 'reload', defer: true
-  end
+  # config.hook(:javascripts) do
+  #   javascript_include_tag 'application', "data-turbolinks-track": 'reload', defer: true
+  # end
 
   # Toggle whether Turbolinks is enabled within the admin.
   # Defaults to true if Turbolinks is available.
@@ -193,9 +193,9 @@ Trestle.configure do |config|
   # Specify the redirect location after a successful login.
   # Defaults to the main Trestle admin path.
   #
-  # config.auth.redirect_on_login = -> {
+  # config.auth.redirect_on_login = lambda {
   #   if admin = Trestle.lookup(Trestle.config.auth.user_admin)
-  #     admin.instance_path(current_user)
+  # p admin.instance_path(current_user)
   #   else
   #     Trestle.config.path
   #   end
@@ -217,7 +217,7 @@ Trestle.configure do |config|
   # Defaults to the trestle-auth login page. You may wish to change
   # this if you have also disabled the login form/action above.
   #
-  # config.auth.login_url = -> { "/users/sign_in" }
+  config.auth.login_url = -> { '/login' }
 
   # Specify the logo used on the login form.
   # If not specified, will fall back to config.site_logo,

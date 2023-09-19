@@ -7,38 +7,36 @@ Trestle.resource(:borrowers) do
     model.for_listing
   end
 
-  # Customize the table columns shown on the index view.
-  #
   table do
-    column :id
-    column :name, link: true
-    column :amount
-    # column :district, link: false
-    # column :ward, link: false
-    column :note
-    column :created_at, align: :center do |a|
+    column :name, link: true, header: 'Họ tên'
+    column :amount, header: 'Số tiền mượn'
+    column :district, link: false, header: 'Quận'
+    column :ward, link: false, header: 'Phường'
+    column :note, header: 'Ghi Chú'
+    column :created_at, align: :center, header: 'Ngày tạo' do |a|
       a.created_at.localtime.to_fs(:short)
     end
     actions
   end
 
-  # Customize the form fields shown on the new/edit views.
-  #
-  form dialog: true do |borrower|
-    p borrower
-    text_field :name
+  form do |borrower|
+    text_field :name, label: 'Họ tên'
     row do
-      col { number_field :amount }
-      col { text_field :note }
+      col { number_field :amount, label: 'Số tiền' }
+      col { text_field :note, label: 'Ghi chú' }
     end
 
     row do
-      col { collection_select :district_id, Location.district, :id, :name }
-      # col { select :ward_id, Location.ward(id: borrower.district_id) }
+      col do
+        select :district_id, Location.district, { include_blank: '- Chọn quận -', label: 'Quận' }
+      end
+      col do
+        select :ward_id, Location.wards(borrower.district_id), { include_blank: '- Chọn phường -', label: 'Phường' }
+      end
     end
   end
 
   params do |params|
-    params.require(:borrower).permit(:name, :amount, :note, :district_id)
+    params.require(:borrower).permit(:name, :amount, :note, :district_id, :ward_id)
   end
 end

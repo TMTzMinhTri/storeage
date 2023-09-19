@@ -16,11 +16,12 @@ Trestle.resource(:users, model: User, scope: Auth) do
   end
 
   form do |_user|
-    text_field :email
-
-    row do
-      col(sm: 6) { password_field :password }
-      col(sm: 6) { password_field :password_confirmation }
+    tab :profile do
+      text_field :email
+    end
+    tab :password_reset do
+      password_field :password
+      password_field :password_confirmation
     end
   end
 

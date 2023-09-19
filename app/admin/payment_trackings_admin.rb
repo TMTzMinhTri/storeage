@@ -8,20 +8,21 @@ Trestle.resource(:payment_trackings) do
   end
 
   table do
-    column :borrower_name do |payment_trackings|
+    column :borrower_id, header: 'Họ tên' do |payment_trackings|
       payment_trackings.borrower.name
     end
-    column :amount
-    column :note
+    column :amount, header: 'Số tiền'
+    column :note, header: 'Ghi chú'
 
     actions
   end
 
   form do |_payment_tracking|
-    select :borrower_id, Borrower.for_listing
+    collection_select :borrower_id, Borrower.for_listing, :id, :name,
+                      { label: 'Danh sách người mượn', include_blank: '- Chọn tên -' }
     row do
-      col { number_field :amount }
-      col { text_field :note }
+      col { number_field :amount, label: 'Số tiền' }
+      col { text_field :note, label: 'Ghi chú' }
     end
   end
 

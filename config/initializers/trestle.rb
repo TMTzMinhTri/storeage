@@ -3,7 +3,7 @@ Trestle.configure do |config|
   #
   # Set the page title shown in the main header within the admin.
   #
-  config.site_title = 'Core API'
+  config.site_title = 'Sổ sách'
 
   # Specify a custom image to be used in place of the site title for mobile and
   # expanded/desktop navigation. These images should be placed within your
@@ -93,6 +93,10 @@ Trestle.configure do |config|
   # config.hook(:stylesheets) do
   #   stylesheet_link_tag "custom"
   # end
+
+  config.hook(:javascripts) do
+    javascript_include_tag 'application', "data-turbolinks-track": 'reload', defer: true
+  end
 
   # Toggle whether Turbolinks is enabled within the admin.
   # Defaults to true if Turbolinks is available.

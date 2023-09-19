@@ -4,8 +4,11 @@
 
 import { application } from "./application"
 
-import HelloController from "./hello_controller"
+import LocationController from "./location_controller"
+// import Select2Controller from 'stimulus-select2'
+
 import NotificationsController from "./notifications_controller"
 
-application.register("hello", HelloController)
+application.register("location", LocationController)
 application.register('notifications', NotificationsController)
+// application.register("select2", Select2Controller)

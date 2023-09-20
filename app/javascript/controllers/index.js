@@ -5,10 +5,7 @@
 import { application } from "./application"
 
 import LocationController from "./location_controller"
-// import Select2Controller from 'stimulus-select2'
+application.register("location", LocationController)
 
 import NotificationsController from "./notifications_controller"
-
-application.register("location", LocationController)
 application.register('notifications', NotificationsController)
-// application.register("select2", Select2Controller)

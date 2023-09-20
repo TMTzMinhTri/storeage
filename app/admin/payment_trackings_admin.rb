@@ -3,8 +3,13 @@ Trestle.resource(:payment_trackings) do
     item :payment_trackings, icon: 'fa fa-star', label: 'Sổ ngày'
   end
 
-  collection do
-    model.includes(:borrower)
+  collection do |params|
+    date = params[:filter_by_date] || Date.current
+    model.includes(:borrower).filter_by_date(date.to_date)
+  end
+
+  hook('resource.index.header') do
+    render 'trestle/filter/date'
   end
 
   table do

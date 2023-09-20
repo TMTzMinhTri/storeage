@@ -30,12 +30,14 @@ Trestle.resource(:borrowers) do
       col { text_field :note, label: 'Ghi chú' }
     end
 
-    row do
+    row data: { controller: 'location' } do
       col do
-        select :district_id, Location.district, { include_blank: '- Chọn quận -', label: 'Quận' }
+        select :district_id, Location.district, { include_blank: '- Chọn quận -', label: 'Quận' },
+               { data: { 'location-target' => 'district' } }
       end
       col do
-        select :ward_id, Location.wards(borrower.district_id), { include_blank: '- Chọn phường -', label: 'Phường' }
+        select :ward_id, Location.wards(borrower.district_id), { include_blank: '- Chọn phường -', label: 'Phường' },
+               { data: { 'location-target' => 'ward' } }
       end
     end
   end

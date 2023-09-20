@@ -90,13 +90,13 @@ Trestle.configure do |config|
 
   # Specify a custom hook to be injected into the admin.
   #
-  # config.hook(:stylesheets) do
-  #   stylesheet_link_tag "custom"
-  # end
+  config.hook(:stylesheets) do
+    stylesheet_link_tag 'application'
+  end
 
-  # config.hook(:javascripts) do
-  #   javascript_include_tag 'application', "data-turbolinks-track": 'reload', defer: true
-  # end
+  config.hook(:javascripts) do
+    javascript_include_tag 'application', "data-turbolinks-track": 'reload', defer: true
+  end
 
   # Toggle whether Turbolinks is enabled within the admin.
   # Defaults to true if Turbolinks is available.

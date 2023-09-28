@@ -56,24 +56,23 @@ Trestle.resource(:borrowers) do
     params.require(:borrower).permit(:name, :amount, :note, :district_id, :ward_id)
   end
 
-  # controller do
-  #   def export_to_pdf
-  #     client = current_user
-  #     send_data generate_pdf(client),
-  #               filename: "#{client.username}.pdf",
-  #               type: 'application/pdf',
-  #               disposition: 'inline'
-  #   end
+  controller do
+    def export_to_pdf
+      send_data generate_pdf,
+                filename: "#{Date.current}.pdf",
+                type: 'application/pdf',
+                disposition: 'inline'
+    end
 
-  #   private
+    private
 
-  #   def generate_pdf(_client)
-  #     file = Pdf::Borrower.new
-  #     file.render
-  #   end
-  # end
+    def generate_pdf
+      file = Pdf::Borrower.new
+      file.render
+    end
+  end
 
-  # routes do
-  #   get :export_to_pdf, on: :collection
-  # end
+  routes do
+    get :export_to_pdf, on: :collection
+  end
 end

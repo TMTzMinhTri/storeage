@@ -12,8 +12,7 @@
   <% if hook?("resource.index.header") %>
     <header class="main-content-header flex justify-between">
       <%= hook("resource.index.header") %>
-
-      <%#=  link_to 'Export', export_to_pdf_borrowers_admin_index_path, class: "btn btn-success" %>
+      <%= link_to 'Xuất file', export_to_pdf_borrowers_admin_index_path, class: "btn btn-success" %>
     </header>
   <% end %>
 

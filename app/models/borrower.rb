@@ -2,15 +2,16 @@
 #
 # Table name: borrowers
 #
-#  id          :bigint           not null, primary key
-#  amount      :integer
-#  deleted_at  :datetime
-#  name        :string
-#  note        :string
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  district_id :integer
-#  ward_id     :integer
+#  id           :bigint           not null, primary key
+#  amount       :integer
+#  deleted_at   :datetime
+#  name         :string
+#  note         :string
+#  taken_amount :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  district_id  :integer
+#  ward_id      :integer
 #
 # Indexes
 #

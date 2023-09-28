@@ -24,6 +24,7 @@ Trestle.resource(:borrowers) do
   table do
     column :name, link: true, header: 'Họ tên', sort: false
     column :amount, header: 'Số tiền mượn', sort: false
+    column :taken_amount, header: 'Lấy', sort: false
     column :district, link: false, header: 'Quận', sort: false
     column :ward, link: false, header: 'Phường', sort: false
     column :note, header: 'Ghi Chú', sort: false
@@ -37,6 +38,7 @@ Trestle.resource(:borrowers) do
     text_field :name, label: 'Họ tên'
     row do
       col { number_field :amount, label: 'Số tiền' }
+      col { number_field :taken_amount, label: 'Lấy' }
       col { text_field :note, label: 'Ghi chú' }
     end
 
@@ -53,7 +55,7 @@ Trestle.resource(:borrowers) do
   end
 
   params do |params|
-    params.require(:borrower).permit(:name, :amount, :note, :district_id, :ward_id)
+    params.require(:borrower).permit(:name, :amount, :note, :district_id, :ward_id, :taken_amount)
   end
 
   controller do

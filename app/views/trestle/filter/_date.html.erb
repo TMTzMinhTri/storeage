@@ -1,10 +1,7 @@
-<div class="max-w-sm">
-  <%= form_tag admin.path, method: :get, class: 'flex items-center' do %>
-   <%= date_field_tag(:filter_by_date, params[:filter_by_date] || Date.current, class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder:"Select date") %>  
-   <%= button_tag(type: 'submit',class:"text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3.5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ml-2") do %>
-    <i class="fa fa-search w-3.5 h-3.5 mr-2"></i>
+<%= form_tag admin.path, method: :get, class: 'form-inline' do %>
+  <%= date_field_tag(:filter_by_date, params[:filter_by_date] || Date.current, class:"form-control", placeholder:"Select date") %>  
+  <%= button_tag(type: 'submit',class:"btn btn-primary ml-2") do %>
+    <i class="fa fa-search"></i>
     Tìm
-   <% end %>
-   <%= link_to icon("fa fa-times"), admin.path, class: "clear-search" if params[:filter_by_date].present? %>
   <% end %>
-</div>
+<% end %>

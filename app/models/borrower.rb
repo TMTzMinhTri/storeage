@@ -28,7 +28,7 @@ class Borrower < ApplicationRecord
   scope :for_listing, lambda {
     includes(:district, :ward)
   }
-  default_scope -> { where("deleted_at": nil).order('created_at DESC') }
+  default_scope -> { where("deleted_at": nil).order('id DESC') }
 
   pg_search_scope :pg_search,
                   against: [:name],

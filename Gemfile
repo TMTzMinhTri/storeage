@@ -85,4 +85,10 @@ gem 'sidekiq', '~> 7.1'
 gem 'trestle'
 gem 'trestle-auth'
 
-gem "trestle-search", "~> 0.4.3"
+gem 'trestle-search', '~> 0.4.3'
+
+# Export to pdf file
+gem 'matrix', '~> 0.4.2'
+gem 'prawn', '~> 2.4'
+
+gem "prawn-table", "~> 0.2.2"

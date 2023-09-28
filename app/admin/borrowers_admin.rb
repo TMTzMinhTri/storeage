@@ -1,3 +1,5 @@
+require 'prawn'
+
 Trestle.resource(:borrowers) do
   menu do
     item :borrowers, icon: 'fa fa-users', label: 'Người mượn'
@@ -11,12 +13,20 @@ Trestle.resource(:borrowers) do
     model.for_listing
   end
 
+  delete_instance do |instance, _attrs|
+    instance.update!(deleted_at: Time.current)
+  end
+
+  hook('resource.index.footer') do
+    content_tag(:div, "Tổng: #{Borrower.sum(&:amount)}")
+  end
+
   table do
-    column :name, link: true, header: 'Họ tên'
-    column :amount, header: 'Số tiền mượn'
-    column :district, link: false, header: 'Quận'
-    column :ward, link: false, header: 'Phường'
-    column :note, header: 'Ghi Chú'
+    column :name, link: true, header: 'Họ tên', sort: false
+    column :amount, header: 'Số tiền mượn', sort: false
+    column :district, link: false, header: 'Quận', sort: false
+    column :ward, link: false, header: 'Phường', sort: false
+    column :note, header: 'Ghi Chú', sort: false
     column :created_at, align: :center, header: 'Ngày tạo' do |a|
       a.created_at.localtime.to_fs(:short)
     end
@@ -45,4 +55,25 @@ Trestle.resource(:borrowers) do
   params do |params|
     params.require(:borrower).permit(:name, :amount, :note, :district_id, :ward_id)
   end
+
+  # controller do
+  #   def export_to_pdf
+  #     client = current_user
+  #     send_data generate_pdf(client),
+  #               filename: "#{client.username}.pdf",
+  #               type: 'application/pdf',
+  #               disposition: 'inline'
+  #   end
+
+  #   private
+
+  #   def generate_pdf(_client)
+  #     file = Pdf::Borrower.new
+  #     file.render
+  #   end
+  # end
+
+  # routes do
+  #   get :export_to_pdf, on: :collection
+  # end
 end

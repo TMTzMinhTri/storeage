@@ -9,12 +9,4 @@ class Trestle::ApplicationController < ActionController::Base
   include Trestle::Controller::Location
   include Trestle::Controller::Title
   include Trestle::Controller::Toolbars
-
-  around_action :set_time_zone, if: :current_user
-
-  private
-
-  def set_time_zone(&block)
-    Time.use_zone('Hanoi', &block)
-  end
 end

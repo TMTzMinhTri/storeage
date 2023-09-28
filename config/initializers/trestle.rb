@@ -90,9 +90,9 @@ Trestle.configure do |config|
 
   # Specify a custom hook to be injected into the admin.
   #
-  config.hook(:stylesheets) do
-    stylesheet_link_tag 'application'
-  end
+  # config.hook(:stylesheets) do
+  #   stylesheet_link_tag 'application'
+  # end
 
   config.hook(:javascripts) do
     javascript_include_tag 'application', "data-turbolinks-track": 'reload', defer: true
@@ -186,9 +186,9 @@ Trestle.configure do |config|
   # Customize the method for determining the user's time zone.
   # Defaults to user.time_zone (if the method is defined).
   #
-  # config.auth.time_zone = ->(user) {
-  #   user.time_zone if user.respond_to?(:time_zone)
-  # }
+  config.auth.time_zone = lambda { |_user|
+    'Hanoi'
+  }
 
   # Specify the redirect location after a successful login.
   # Defaults to the main Trestle admin path.

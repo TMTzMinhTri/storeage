@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: borrowers
@@ -20,8 +22,8 @@
 class Borrower < ApplicationRecord
   include PgSearch::Model
 
-  belongs_to :district, foreign_key: :district_id, class_name: 'Location', optional: true
-  belongs_to :ward, foreign_key: :ward_id, class_name: 'Location', optional: true
+  belongs_to :district, foreign_key: :district_id, class_name: "Location", optional: true
+  belongs_to :ward, foreign_key: :ward_id, class_name: "Location", optional: true
 
   validates :name, presence: true, uniqueness: { scope: :deleted_at }
   validates :amount, presence: true
@@ -29,11 +31,11 @@ class Borrower < ApplicationRecord
   scope :for_listing, lambda {
     includes(:district, :ward)
   }
-  default_scope -> { where("deleted_at": nil).order('id DESC') }
+  default_scope -> { where("deleted_at": nil).order("id DESC") }
 
   pg_search_scope :pg_search,
-                  against: [:name],
-                  using: {
-                    tsearch: { prefix: true }
-                  }
+    against: [:name],
+    using: {
+      tsearch: { prefix: true },
+    }
 end

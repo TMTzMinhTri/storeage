@@ -1,8 +1,10 @@
-require 'prawn'
+# frozen_string_literal: true
+
+require "prawn"
 
 Trestle.resource(:borrowers) do
   menu do
-    item :borrowers, icon: 'fa fa-users', label: 'Người mượn'
+    item :borrowers, icon: "fa fa-users", label: "Người mượn"
   end
 
   search do |query|
@@ -17,39 +19,43 @@ Trestle.resource(:borrowers) do
     instance.update!(deleted_at: Time.current)
   end
 
-  hook('resource.index.footer') do
+  hook("resource.index.footer") do
     content_tag(:div, "Tổng: #{Borrower.sum(&:amount)}")
   end
 
   table do
-    column :name, link: true, header: 'Họ tên', sort: false
-    column :amount, header: 'Số tiền mượn', sort: false
-    column :taken_amount, header: 'Lấy', sort: false
-    column :district, link: false, header: 'Quận', sort: false
-    column :ward, link: false, header: 'Phường', sort: false
-    column :note, header: 'Ghi Chú', sort: false
-    column :created_at, align: :center, header: 'Ngày tạo' do |a|
+    column :name, link: true, header: "Họ tên", sort: false
+    column :amount, header: "Số tiền mượn", sort: false
+    column :taken_amount, header: "Lấy", sort: false
+    column :district, link: false, header: "Quận", sort: false
+    column :ward, link: false, header: "Phường", sort: false
+    column :note, header: "Ghi Chú", sort: false
+    column :created_at, align: :center, header: "Ngày tạo" do |a|
       a.created_at.localtime.to_fs(:short)
     end
     actions
   end
 
   form do |borrower|
-    text_field :name, label: 'Họ tên'
+    text_field :name, label: "Họ tên"
     row do
-      col { number_field :amount, label: 'Số tiền' }
-      col { number_field :taken_amount, label: 'Lấy' }
-      col { text_field :note, label: 'Ghi chú' }
+      col { number_field :amount, label: "Số tiền" }
+      col { number_field :taken_amount, label: "Lấy" }
+      col { text_field :note, label: "Ghi chú" }
     end
 
-    row data: { controller: 'location' } do
+    row data: { controller: "location" } do
       col do
-        select :district_id, Location.district, { include_blank: '- Chọn quận -', label: 'Quận' },
-               { data: { 'location-target' => 'district' } }
+        select :district_id,
+          Location.district,
+          { include_blank: "- Chọn quận -", label: "Quận" },
+          { data: { "location-target" => "district" } }
       end
       col do
-        select :ward_id, Location.wards(borrower.district_id), { include_blank: '- Chọn phường -', label: 'Phường' },
-               { data: { 'location-target' => 'ward' } }
+        select :ward_id,
+          Location.wards(borrower.district_id),
+          { include_blank: "- Chọn phường -", label: "Phường" },
+          { data: { "location-target" => "ward" } }
       end
     end
   end
@@ -60,10 +66,12 @@ Trestle.resource(:borrowers) do
 
   controller do
     def export_to_pdf
-      send_data generate_pdf,
-                filename: "#{Date.current}.pdf",
-                type: 'application/pdf',
-                disposition: 'inline'
+      send_data(
+        generate_pdf,
+        filename: "#{Date.current}.pdf",
+        type: "application/pdf",
+        disposition: "inline",
+      )
     end
 
     private

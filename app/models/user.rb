@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -34,8 +36,13 @@ class User < ApplicationRecord
   # include Authenticate
   attr_writer :login
 
-  devise :database_authenticatable, :recoverable, :validatable,
-         :confirmable, :lockable, :trackable, authentication_keys: [:login]
+  devise :database_authenticatable,
+    :recoverable,
+    :validatable,
+    :confirmable,
+    :lockable,
+    :trackable,
+    authentication_keys: [:login]
 
   validates :username, presence: true, uniqueness: { case_sensitive: false }
 
@@ -47,9 +54,11 @@ class User < ApplicationRecord
     def find_for_database_authentication(warden_conditions)
       conditions = warden_conditions.dup
       if (login = conditions.delete(:login))
-        where(conditions.to_h).where(['lower(username) = :value OR lower(email) = :value',
-                                      { value: login.downcase }]).first
-      elsif conditions.has_key?(:username) || conditions.has_key?(:email)
+        where(conditions.to_h).where([
+          "lower(username) = :value OR lower(email) = :value",
+          { value: login.downcase },
+        ]).first
+      elsif conditions.key?(:username) || conditions.key?(:email)
         where(conditions.to_h).first
       end
     end

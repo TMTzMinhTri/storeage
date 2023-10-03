@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Trestle.resource(:account, model: User, scope: Auth, singular: true) do
   instance do
     current_user

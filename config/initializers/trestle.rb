@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 Trestle.configure do |config|
   # == Customization Options
   #
   # Set the page title shown in the main header within the admin.
   #
-  config.site_title = 'Sổ sách'
+  config.site_title = "Sổ sách"
 
   # Specify a custom image to be used in place of the site title for mobile and
   # expanded/desktop navigation. These images should be placed within your
@@ -33,7 +35,7 @@ Trestle.configure do |config|
   #
   # Set the path at which to mount the Trestle admin. Defaults to /admin.
   #
-  config.path = '/'
+  config.path = "/"
 
   # Toggle whether Trestle should automatically mount the admin within your
   # Rails application's routes. Defaults to true.
@@ -95,7 +97,7 @@ Trestle.configure do |config|
   # end
 
   config.hook(:javascripts) do
-    javascript_include_tag 'application', "data-turbolinks-track": 'reload', defer: true
+    javascript_include_tag "application", "data-turbolinks-track": "reload", defer: true
   end
 
   # Toggle whether Turbolinks is enabled within the admin.
@@ -187,7 +189,7 @@ Trestle.configure do |config|
   # Defaults to user.time_zone (if the method is defined).
   #
   config.auth.time_zone = lambda { |_user|
-    'Hanoi'
+    "Hanoi"
   }
 
   # Specify the redirect location after a successful login.
@@ -217,7 +219,7 @@ Trestle.configure do |config|
   # Defaults to the trestle-auth login page. You may wish to change
   # this if you have also disabled the login form/action above.
   #
-  config.auth.login_url = -> { '/login' }
+  config.auth.login_url = -> { "/login" }
 
   # Specify the logo used on the login form.
   # If not specified, will fall back to config.site_logo,

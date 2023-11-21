@@ -57,6 +57,7 @@ group :development do
   gem 'annotate', '~> 3.2'
   gem 'awesome_print', '~> 1.9'
   gem 'bullet'
+  gem 'letter_opener'
   gem 'web-console'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
@@ -83,3 +84,8 @@ gem 'pg_search', '~> 2.3'
 gem 'rack-cors', '~> 2.0'
 gem 'sidekiq', '~> 7.1'
 gem 'slim-rails', '~> 3.6'
+
+gem 'activerecord-import', '~> 1.5'
+gem 'devise_invitable', '~> 2.0'
+gem 'httparty', '~> 0.21.0'
+gem 'koala', '~> 3.5'

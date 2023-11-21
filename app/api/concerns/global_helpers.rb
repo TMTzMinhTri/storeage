@@ -6,49 +6,48 @@ module GlobalHelpers
   include JWTSessions::Authorization
 
   params :pagination do
-    optional :page, type: Integer, desc: "Page number!"
+    optional :page, type: Integer, desc: 'Page number!'
   end
 
   def declared_params
     @declared_params ||= ActionController::Parameters.new(declared(
-      params,
-      include_missing: false,
-    )).permit!
+                                                            params,
+                                                            include_missing: false
+                                                          )).permit!
   end
 
   def pagination_values(collection)
     pagy, data = pagy(collection, overflow: :last_page)
     {
       data:,
-      pagination: pagy,
+      pagination: pagy
     }
   end
 
   def login(tokens)
-    # cookies[JWTSessions.access_cookie] = {
-    #   value: tokens[:access],
-    #   expires: tokens[:access_expires_at],
-    #   path: "/",
-    #   httponly: Rails.env.production?,
-    #   samesite: "none",
-    #   secure: Rails.env.production?,
-    # }
+    cookies[JWTSessions.access_cookie] = {
+      value: tokens[:access],
+      expires: tokens[:access_expires_at],
+      path: '/',
+      httponly: false,
+      secure: Rails.env.production?
+    }
 
     cookies[JWTSessions.refresh_cookie] = {
       value: tokens[:refresh],
       expires: tokens[:refresh_expires_at],
-      path: "/",
+      path: '/',
       httponly: Rails.env.production?,
-      secure: Rails.env.production?,
+      secure: Rails.env.production?
     }
   end
 
   def logout
-    cookies.delete(JWTSessions.refresh_cookie, path: "/")
+    cookies.delete(JWTSessions.refresh_cookie, path: '/')
   end
 
   def current_user
-    @current_user ||= User.find(payload["user_id"])
+    @current_user ||= User.find(payload['user_id'])
   end
 
   def request_headers

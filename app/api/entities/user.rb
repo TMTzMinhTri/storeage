@@ -5,7 +5,7 @@ module Entities
     expose :id
     expose :email
     expose :name
-    expose :store, using: Entities::Store
+    expose :stores, using: Entities::Store
     with_options(format_with: :iso_timestamp) do
       expose :created_at
       expose :updated_at

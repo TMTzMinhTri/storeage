@@ -17,4 +17,4 @@ params = {
   }
 }
 
-UserService::CreateUser.call(params:)
+UserService::RegisterUser.call(params:)

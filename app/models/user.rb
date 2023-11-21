@@ -2,7 +2,7 @@
 #
 # Table name: users
 #
-#  id                     :bigint           not null, primary key
+#  id                     :uuid             not null, primary key
 #  confirmation_sent_at   :datetime
 #  confirmation_token     :string
 #  confirmed_at           :datetime
@@ -32,30 +32,39 @@
 #  index_users_on_unlock_token          (unlock_token) UNIQUE
 #
 class User < ApplicationRecord
+  include Authenticate
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable,
-         :validatable, :confirmable, :lockable, :trackable
+
+  devise :database_authenticatable,
+         :recoverable,
+         :validatable,
+         :confirmable,
+         :lockable,
+         :trackable
 
   has_many :user_stores
   has_many :stores, through: :user_stores
-  has_one :store
+  has_many :channels, inverse_of: 'user_connect'
 
-  accepts_nested_attributes_for :store
+  before_validation :ensure_password, on: :create, if: -> { password.blank? }
 
+  accepts_nested_attributes_for :stores
+
+  def access_payload
+    refresh_payload.merge({
+                            email:
+                          })
+  end
+
+  def refresh_payload
+    { user_id: id }
+  end
+
+  def ensure_password
+    self.password = Devise.friendly_token(6)
+  end
   class << self
-    # def from_omniauth(auth)
-    #   find_or_create_by!(provider: auth.provider, uid: auth.uid) do |user|
-    #     user.email = auth.info.email
-    #     user.password = Devise.friendly_token[0, 20]
-    #     user.name = auth.info.name
-    #     user.skip_confirmation!
-    #   end
-    # end
-
-    # def new_with_session(params, session)
-    #   p super
-    # end
   end
 end

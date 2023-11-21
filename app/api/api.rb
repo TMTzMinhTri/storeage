@@ -24,6 +24,9 @@ class API < Grape::API
 
   # mount Endpoints::Root
   mount Endpoints::Users
+  mount Endpoints::Channels
+  mount Endpoints::Locations
+  mount Endpoints::Stores
   # mount Endpoints::QualityLabAPI::Base
 
   # mount Endpoints::Clients

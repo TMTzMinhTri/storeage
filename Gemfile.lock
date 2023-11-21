@@ -58,6 +58,8 @@ GEM
       activemodel (= 7.1.1)
       activesupport (= 7.1.1)
       timeout (>= 0.4.0)
+    activerecord-import (1.5.0)
+      activerecord (>= 4.2)
     activestorage (7.1.1)
       actionpack (= 7.1.1)
       activejob (= 7.1.1)
@@ -77,6 +79,8 @@ GEM
     acts_as_paranoid (0.9.0)
       activerecord (>= 6.1, < 7.2)
       activesupport (>= 6.1, < 7.2)
+    addressable (2.8.5)
+      public_suffix (>= 2.0.2, < 6.0)
     annotate (3.2.0)
       activerecord (>= 3.2, < 8.0)
       rake (>= 10.4, < 14.0)
@@ -106,6 +110,9 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise_invitable (2.0.9)
+      actionmailer (>= 5.0)
+      devise (>= 4.6)
     dotenv (2.8.1)
     dotenv-rails (2.8.1)
       dotenv (= 2.8.1)
@@ -131,6 +138,8 @@ GEM
       base64
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
+    faraday-multipart (1.0.4)
+      multipart-post (~> 2)
     faraday-net_http (3.0.2)
     globalid (1.2.1)
       activesupport (>= 6.1)
@@ -155,6 +164,9 @@ GEM
       grape
       rack
     hashie (5.0.0)
+    httparty (0.21.0)
+      mini_mime (>= 1.0.0)
+      multi_xml (>= 0.5.2)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     io-console (0.6.0)
@@ -166,9 +178,20 @@ GEM
       activesupport (>= 5.0.0)
     jsbundling-rails (1.2.1)
       railties (>= 6.0.0)
+    json (2.6.3)
     jwt (2.7.1)
     jwt_sessions (3.2.1)
       jwt (~> 2.6, < 3)
+    koala (3.5.0)
+      addressable
+      faraday
+      faraday-multipart
+      json (>= 1.8)
+      rexml
+    launchy (2.5.2)
+      addressable (~> 2.8)
+    letter_opener (1.8.1)
+      launchy (>= 2.2, < 3)
     loofah (2.21.4)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -184,6 +207,7 @@ GEM
     msgpack (1.7.2)
     multi_json (1.15.0)
     multi_xml (0.6.0)
+    multipart-post (2.3.0)
     mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
     mustermann-grape (1.0.2)
@@ -233,6 +257,7 @@ GEM
       activesupport (>= 5.2)
     psych (5.1.1.1)
       stringio
+    public_suffix (5.0.3)
     puma (6.4.0)
       nio4r (~> 2.0)
     racc (1.7.3)
@@ -289,6 +314,7 @@ GEM
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
+    rexml (3.2.6)
     ruby2_keywords (0.0.5)
     sidekiq (7.2.0)
       concurrent-ruby (< 2)
@@ -346,6 +372,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  activerecord-import (~> 1.5)
   acts_as_paranoid (~> 0.9.0)
   annotate (~> 3.2)
   awesome_print (~> 1.9)
@@ -354,6 +381,7 @@ DEPENDENCIES
   cssbundling-rails
   debug
   devise (~> 4.9)
+  devise_invitable (~> 2.0)
   dotenv-rails
   grape (~> 1.7)
   grape-entity (~> 1.0)
@@ -361,9 +389,12 @@ DEPENDENCIES
   grape-swagger-entity (~> 0.5.1)
   grape-swagger-rails (~> 0.4.0)
   grape_logging (~> 1.8)
+  httparty (~> 0.21.0)
   jbuilder
   jsbundling-rails
   jwt_sessions (~> 3.2)
+  koala (~> 3.5)
+  letter_opener
   omniauth-facebook (~> 9.0)
   omniauth-rails_csrf_protection
   pagy (~> 6.0)

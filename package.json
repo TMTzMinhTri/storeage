@@ -2,6 +2,7 @@
   "name": "app",
   "private": "true",
   "dependencies": {
+    "@greatsumini/react-facebook-login": "^3.3.3",
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^7.3.0",
     "autoprefixer": "^10.4.16",

@@ -47,6 +47,9 @@ module GlobalHelpers
   end
 
   def current_user
+    p '--------------------------------'
+    p payload
+    p '--------------------------------'
     @current_user ||= User.find(payload['user_id'])
   end
 

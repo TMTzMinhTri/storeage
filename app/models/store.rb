@@ -52,4 +52,8 @@ class Store < ApplicationRecord
              optional: true
 
   validates :name, presence: true
+
+  def owner
+    user_stores.where(store_id: id, role: :admin).first
+  end
 end

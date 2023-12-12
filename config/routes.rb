@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root 'page#home'
+  get 'callback' => 'page#callback'
   mount API => '/api'
   mount GrapeSwaggerRails::Engine => '/swagger'
 end

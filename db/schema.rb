@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_15_193824) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_21_185115) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -47,6 +47,16 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_15_193824) do
     t.integer "address_type", default: 0
     t.bigint "parent_id"
     t.index ["parent_id"], name: "index_locations_on_parent_id"
+  end
+
+  create_table "social_pages", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "store_id"
+    t.integer "provider"
+    t.string "social_id"
+    t.string "access_token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id"], name: "index_social_pages_on_store_id"
   end
 
   create_table "stores", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -100,6 +110,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_15_193824) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "locations", "locations", column: "parent_id"
+  add_foreign_key "social_pages", "stores"
   add_foreign_key "stores", "locations", column: "district_id"
   add_foreign_key "stores", "locations", column: "province_id"
   add_foreign_key "stores", "locations", column: "ward_id"

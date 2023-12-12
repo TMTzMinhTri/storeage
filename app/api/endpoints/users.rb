@@ -47,8 +47,8 @@ module Endpoints
 
       desc 'get current user'
       get :me do
-        user = User.last
-        present user, with: Entities::User
+        authorize_access_request!
+        present current_user, with: Entities::User
       end
 
       desc 'Refresh access token',
